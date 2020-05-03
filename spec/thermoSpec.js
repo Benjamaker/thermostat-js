@@ -20,4 +20,8 @@ describe("temperature", function() {
     thermostat.turnDown()
     expect(thermostat.temperature).toEqual(19)
   })
+
+  it("has a default min temp of 10", function() {
+    expect(thermostat.minimumTemp).toEqual(10)  
+  })
 });
