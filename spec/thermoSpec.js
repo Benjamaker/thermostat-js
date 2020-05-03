@@ -15,4 +15,9 @@ describe("temperature", function() {
     thermostat.turnUp()
     expect(thermostat.temperature).toEqual(21);
   })
+
+  it("can be turned down", function() {
+    thermostat.turnDown()
+    expect(thermostat.temperature).toEqual(19)
+  })
 });
