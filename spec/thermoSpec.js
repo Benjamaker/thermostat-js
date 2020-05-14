@@ -30,13 +30,13 @@ describe("temperature", function() {
     expect(function() { thermostat.turnDown() }).toThrowError("Minimum temperature is 10!")
   })
 
-  it("has a default maximum temperature of 32", function() {
-    expect(thermostat.maximumTemp).toEqual(32) 
+  it("has a default maximum temperature of 25", function() {
+    expect(thermostat.maximumTemp).toEqual(25) 
   })
 
   it("raises an error if maximum temperature is exceeded", function() {
-    thermostat.temperature = 32
-    expect(function() { thermostat.turnUp() }).toThrowError("Maximum temperature is 32!")
+    thermostat.temperature = 25
+    expect(function() { thermostat.turnUp() }).toThrowError("Maximum temperature is 25!")
   })
 });
 
@@ -54,6 +54,11 @@ describe("power saving mode", function() {
     thermostat.powerSavingOff()
     thermostat.powerSavingOn()
     expect(thermostat.powerSaving).toBeTruthy();
+  })
+
+  it("sets maximum temperature to 32 when turned off", function() {
+    thermostat.powerSavingOff()
+    expect(thermostat.maximumTemp).toEqual(32)
   })
 
 });
