@@ -50,4 +50,10 @@ describe("power saving mode", function() {
     expect(thermostat.powerSaving).toBeFalsy();
   })
 
+  it("can be turned on", function() {
+    thermostat.powerSavingOff()
+    thermostat.powerSavingOn()
+    expect(thermostat.powerSaving).toBeTruthy();
+  })
+
 });

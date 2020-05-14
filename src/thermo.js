@@ -3,7 +3,7 @@ function Thermostat() {
   this.minimumTemp = 10
   this.maximumTemp = 32
   this.powerSaving = true
-}
+};
 
 Thermostat.prototype.turnUp = function() {
   if (this.temperature === this.maximumTemp) {
@@ -11,7 +11,7 @@ Thermostat.prototype.turnUp = function() {
     } 
   this.temperature += 1
   return this.temperature  
-}
+};
 
 Thermostat.prototype.turnDown = function() {
   if (this.temperature === this.minimumTemp) {
@@ -24,4 +24,8 @@ Thermostat.prototype.turnDown = function() {
 Thermostat.prototype.powerSavingOff = function() {
   this.maximumTemp = 32
   this.powerSaving = false
+};
+
+Thermostat.prototype.powerSavingOn = function() {
+  this.powerSaving = true
 };
