@@ -34,6 +34,9 @@ describe("temperature", function() {
     expect(thermostat.maximumTemp).toEqual(32) 
   })
 
-  // thermostat.temperature = 32
-  //   expect(function() { thermostat.turnUp() }).toThrowError("Maximum temperature is 32!")
+  it("raises an error if maximum temperature is exceeded", function() {
+    thermostat.temperature = 32
+    expect(function() { thermostat.turnUp() }).toThrowError("Maximum temperature is 32!")
+  })
+
 });

@@ -5,13 +5,15 @@ function Thermostat() {
 }
 
 Thermostat.prototype.turnUp = function() {
+  if (this.temperature === this.maximumTemp) {
+    throw new Error(`Maximum temperature is ${this.maximumTemp}!`);
+    } 
   this.temperature += 1
   return this.temperature  
 }
 
 Thermostat.prototype.turnDown = function() {
   if (this.temperature === this.minimumTemp) {
-    console.log(`Minimum temperature is ${this.minimumTemp}!`)
     throw new Error(`Minimum temperature is ${this.minimumTemp}!`);
     } 
   this.temperature -= 1
