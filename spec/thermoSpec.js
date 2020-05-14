@@ -38,9 +38,16 @@ describe("temperature", function() {
     thermostat.temperature = 32
     expect(function() { thermostat.turnUp() }).toThrowError("Maximum temperature is 32!")
   })
+});
 
+describe("power saving mode", function() {
   it("has power save mode on by default", function() {
-    expect(thermostat.powerSaving).toBeTruthy()
+    expect(thermostat.powerSaving).toBeTruthy();
+  })
+
+  it("can be turned off", function() {
+    thermostat.powerSavingOff()
+    expect(thermostat.powerSaving).toBeFalsy();
   })
 
 });

@@ -20,3 +20,8 @@ Thermostat.prototype.turnDown = function() {
   this.temperature -= 1
   return this.temperature
 };
+
+Thermostat.prototype.powerSavingOff = function() {
+  this.maximumTemp = 32
+  this.powerSaving = false
+};
