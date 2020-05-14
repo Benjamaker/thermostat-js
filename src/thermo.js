@@ -27,5 +27,6 @@ Thermostat.prototype.powerSavingOff = function() {
 };
 
 Thermostat.prototype.powerSavingOn = function() {
+  this.maximumTemp = 25
   this.powerSaving = true
 };
