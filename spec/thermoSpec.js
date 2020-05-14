@@ -24,4 +24,9 @@ describe("temperature", function() {
   it("has a default min temp of 10", function() {
     expect(thermostat.minimumTemp).toEqual(10)  
   })
+
+  it("raises an error if minimum temperature is reached", function() { 
+    thermostat.temperature = 10
+    expect(function() { thermostat.turnDown() }).toThrowError("Minimum temperature is 10!")
+  })
 });
