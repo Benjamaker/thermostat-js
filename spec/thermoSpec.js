@@ -61,10 +61,19 @@ describe("power saving mode", function() {
     expect(thermostat.maximumTemp).toEqual(32)
   })
 
-  it("sets minimum temperature to 25 when power save turned on", function() {
+  it("sets maximum temperature to 25 when power save turned on", function() {
     thermostat.powerSavingOff()
     thermostat.powerSavingOn()
     expect(thermostat.maximumTemp).toEqual(25)
+  })
+
+  it("resets temperature to max if turned off when temp is higher", function() {
+    thermostat.powerSavingOff()
+    for (var i = 0; i < 10; i++) {
+      thermostat.turnUp();
+    }
+    thermostat.powerSavingOn()
+    expect(thermostat.temperature).toEqual(25)
   })
 });
 
