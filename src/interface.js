@@ -5,6 +5,7 @@ window.onload = function() {
 $(document).ready(function() {
   
   var thermostat = new Thermostat();
+  updateTemp();
 
   function updateTemp() {
     $('#temperature').text(thermostat.temperature);
@@ -17,6 +18,11 @@ $(document).ready(function() {
 
   $('#temp-down').click(function() {
     thermostat.turnDown();
+    updateTemp();
+  })
+
+  $('#temp-reset').click(function() {
+    thermostat.reset();
     updateTemp();
   })
 });
