@@ -9,6 +9,7 @@ $(document).ready(function() {
 
   function updateTemp() {
     $('#temperature').text(thermostat.temperature);
+    $('#temperature').attr('class', thermostat.energyUsage());
   }
 
   $('#temp-up').click(function() {
