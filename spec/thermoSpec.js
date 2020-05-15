@@ -66,5 +66,32 @@ describe("power saving mode", function() {
     thermostat.powerSavingOn()
     expect(thermostat.maximumTemp).toEqual(25)
   })
+});
 
+describe("reset", function() { 
+  it("resets temperature to default", function() {
+    thermostat.reset()
+    expect(thermostat.temperature).toEqual(20)
+  })
+});
+
+describe("energy usage", function() {
+  it("has medium usage by default", function() {
+    expect(thermostat.energyUsage()).toEqual("medium-usage")
+  })
+
+  it("has low usage when < 18 degrees", function() {
+    for (var i = 0; i < 4; i++) {
+      thermostat.turnDown()
+    } 
+    expect(thermostat.energyUsage()).toEqual("low-usage")
+  })
+
+  it("has high usage when > 25 degrees", function() {
+    thermostat.powerSavingOff()
+    for (var i = 0; i < 7; i++) {
+      thermostat.turnUp()
+    }
+    expect(thermostat.energyUsage()).toEqual("high-usage")
+  })
 });
