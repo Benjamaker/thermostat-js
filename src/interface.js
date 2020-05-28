@@ -6,10 +6,17 @@ $(document).ready(function() {
   
   var thermostat = new Thermostat();
   updateTemp();
+  getWeather();
 
   function updateTemp() {
     $('#temperature').text(thermostat.temperature);
     $('#temperature').attr('class', thermostat.energyUsage());
+  }
+
+  function getWeather() {
+    $.get(`http://api.openweathermap.org/data/2.5/weather?q=London&appid=${SECURE_KEY}`, function(data) {
+      $('#current-temperature').text(data.main.temp);
+    })
   }
 
   $('#temp-up').click(function() {
