@@ -6,18 +6,26 @@ $(document).ready(function() {
   
   var thermostat = new Thermostat();
   updateTemp();
-  getWeather();
+  getWeather('London');
 
   function updateTemp() {
     $('#temperature').text(thermostat.temperature);
     $('#temperature').attr('class', thermostat.energyUsage());
   }
 
-  function getWeather() {
-    $.get(`http://api.openweathermap.org/data/2.5/weather?q=London&appid=${SECURE_KEY}`, function(data) {
+  function getWeather(city) {
+    let url = "http://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=";
+    let units = "&units=metric"
+    $.get(url + SECURE_KEY + units, function(data) {
       $('#current-temperature').text(data.main.temp);
     })
   }
+
+  $('#select-city').submit(function(event) {
+    event.preventDefault();
+    var city = $('#current-city').val();
+    getWeather(city);
+  })
 
   $('#temp-up').click(function() {
     thermostat.turnUp();
