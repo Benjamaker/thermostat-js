@@ -29,7 +29,7 @@ $(document).ready(function() {
 
   $('#temp-up').click(function() {
     thermostat.turnUp();
-    updateTemp();
+    updateTemp();   
   })
 
   $('#temp-down').click(function() {

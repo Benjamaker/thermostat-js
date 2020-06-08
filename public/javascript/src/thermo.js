@@ -5,6 +5,13 @@ function Thermostat() {
   this.powerSaving = true
 };
 
+// Thermostat.prototype.getCurrentTemp = function(callback) {
+//   $.get('/temperature', function(res) {
+//     var data = JSON.parse(res)
+//     callback(data);
+//   })  
+// };
+
 Thermostat.prototype.turnUp = function() {
   if (this.temperature === this.maximumTemp) {
     throw new Error(`Maximum temperature is ${this.maximumTemp}!`);
