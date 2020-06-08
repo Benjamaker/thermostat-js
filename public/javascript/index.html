@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="public/thermoStyle.css"></link>
+  <link rel="stylesheet" href="../css/thermoStyle.css"></link>
   <meta charset="UTF-8">
   <title>Thermostat</title>
 </head>
-<body>
-  <section>
+<div id="main"><body>
+  <div class="thermostat"><section>
     <h1 id="temperature"></h1>
     <p>
       <button id="temp-up">+</button>
@@ -20,27 +20,24 @@
       <button id="psm-on">power saving on</button>
       <button id="psm-off">power saving off</button>
     </p>
-  </section>
+  </section></div>
 
-  <section>
+  <div class="weather-data"><section>
     <h1>Current temperature: <span id="current-temperature">20</span></h1>
     <form id="select-city">
       <input id="current-city" type="text" placeholder="Enter a city"></input>
       <input type="submit"></input>
     </form>
-  </section>
+  </section></div>
 
   <script
     src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-  
 
   <script src="src/thermo.js"></script>
   <script src="src/interface.js"></script>
   <script src="src/weather_api.js"></script>  
   
-  
-  
-</body>
+</body></div>
 </html>
