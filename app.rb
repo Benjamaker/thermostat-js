@@ -14,7 +14,8 @@ class ThermostatApp < Sinatra::Base
   end
   
   post "/temperature" do
-    thermostat = Thermostat.instancethermostat.update(params[:temperature])
+    thermostat = Thermostat.instance
+    thermostat.update(params[:temperature])
     { status: 200 }.to_json
   end  
   
