@@ -5,27 +5,27 @@ function Thermostat() {
   this.powerSaving = true
 };
 
-// Thermostat.prototype.getCurrentTemp = function(callback) {
-//   $.get('/temperature', function(res) {
-//     var data = JSON.parse(res)
-//     callback(data);
-//   })  
-// };
-
-Thermostat.prototype.turnUp = function() {
-  if (this.temperature === this.maximumTemp) {
-    throw new Error(`Maximum temperature is ${this.maximumTemp}!`);
-    } 
-  this.temperature += 1
-  return this.temperature  
+Thermostat.prototype.getCurrentTemp = function(callback) {
+  $.get('/temperature', function(res) {
+    var data = JSON.parse(res)
+    callback(data);
+  })  
 };
 
-Thermostat.prototype.turnDown = function() {
-  if (this.temperature === this.minimumTemp) {
+Thermostat.prototype.turnUp = function(temperature, callback) {
+  if (temperature === this.maximumTemp) {
+    throw new Error(`Maximum temperature is ${this.maximumTemp}!`);
+    } 
+    let value = temperature += 1;
+    this.updateTemperature(value, callback) 
+};
+
+Thermostat.prototype.turnDown = function(temperature, callback) {
+  if (temperature === this.minimumTemp) {
     throw new Error(`Minimum temperature is ${this.minimumTemp}!`);
     } 
-  this.temperature -= 1
-  return this.temperature
+    let value = temperature -= 1;
+    this.updateTemperature(value, callback) 
 };
 
 Thermostat.prototype.powerSavingOff = function() {
@@ -55,3 +55,7 @@ Thermostat.prototype.energyUsage = function() {
     return "medium-usage"
   }
 };
+
+Thermostat.prototype.updateTemperature = function(value, callback) {
+  $.post('/temperature', { temperature: value }, callback)
+}

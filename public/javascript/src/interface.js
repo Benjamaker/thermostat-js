@@ -9,8 +9,11 @@ $(document).ready(function() {
   getWeather('London');
 
   function updateTemp() {
-    $('#temperature').text(thermostat.temperature);
-    $('#temperature').attr('class', thermostat.energyUsage());
+    thermostat.getCurrentTemp(function(data) {
+      $('#temperature').text(data.temperature);
+      $('#temperature').attr('class', thermostat.energyUsage());
+      console.log(data)
+    })
   }
 
   function getWeather(city) {
@@ -28,13 +31,13 @@ $(document).ready(function() {
   })
 
   $('#temp-up').click(function() {
-    thermostat.turnUp();
-    updateTemp();   
+    let currentTemp = parseInt($('#temperature').text())
+    thermostat.turnUp(currentTemp, updateTemp);
   })
 
   $('#temp-down').click(function() {
-    thermostat.turnDown();
-    updateTemp();
+    let currentTemp = parseInt($('#temperature').text())
+    thermostat.turnDown(currentTemp, updateTemp);
   })
 
   $('#temp-reset').click(function() {
