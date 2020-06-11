@@ -16,9 +16,21 @@ class ThermostatApp < Sinatra::Base
   post "/temperature" do
     p params
     thermostat = Thermostat.instance
-    thermostat.update(params[:temperature])
+    thermostat.update_temperature(params[:temperature])
     { status: 200 }.to_json
-  end  
+  end 
   
+  get "/power-save-status" do
+    thermostat = Thermostat.instance
+    { psm: thermostat.psm }.to_json
+  end
+
+  post "/power-save-status" do
+    p params
+    thermostat = Thermostat.instance
+    thermostat.update_psm(params[:psm])
+    { status: 200 }.to_json
+  end
+
   run! if app_file == $0
 end  

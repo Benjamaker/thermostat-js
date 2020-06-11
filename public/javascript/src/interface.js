@@ -6,12 +6,20 @@ $(document).ready(function() {
   
   var thermostat = new Thermostat();
   updateTemp();
+  updatePowerSaving();
   getWeather('London');
 
   function updateTemp() {
     thermostat.getCurrentTemp(function(data) {
       $('#temperature').text(data.temperature);
-      $('#temperature').attr('class', thermostat.energyUsage());
+      $('#temperature').attr('class', thermostat.energyUsage(data.temperature));
+      console.log(data)
+    })
+  }
+
+  function updatePowerSaving() {
+    thermostat.getPowerSaving(function(data) {
+      $('#power-save-status').text(data.psm);
       console.log(data)
     })
   }
