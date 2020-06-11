@@ -1,8 +1,7 @@
 function Thermostat() {
-  this.temperature = 20
+  this.defaultTemp = 20
   this.minimumTemp = 10
   this.maximumTemp = 25
-  this.powerSaving = true
 };
 
 Thermostat.prototype.getCurrentTemp = function(callback) {
@@ -43,18 +42,15 @@ Thermostat.prototype.powerSavingOff = function(callback) {
 Thermostat.prototype.powerSavingOn = function(temperature, callback) {
   this.maximumTemp = 25
   this.updatePSM(true, callback)
-  console.log(temperature)
   if (temperature > 25) {
     temperature = this.maximumTemp
   } 
-  console.log(temperature)
   this.updateTemperature(temperature)
 };
 
-Thermostat.prototype.reset = function(temperature) {
-  temperature = 20
-  this.powerSaving = true
-  this.updateTemperature(temperature)
+Thermostat.prototype.reset = function(temperature, callback) {
+  this.updatePSM(true, callback)
+  this.updateTemperature(this.defaultTemp)
 };
 
 Thermostat.prototype.energyUsage = function(temperature) {

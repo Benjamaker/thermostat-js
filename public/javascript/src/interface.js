@@ -52,7 +52,8 @@ $(document).ready(function() {
   })
 
   $('#temp-reset').click(function() {
-    thermostat.reset();
+    let currentTemp = parseInt($('#temperature').text())
+    thermostat.reset(currentTemp, updatePowerSaving);
     updateTemp();
   })
 
