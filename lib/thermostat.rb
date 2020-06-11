@@ -17,5 +17,5 @@ class Thermostat
   def update_psm(psm)
     @psm = psm
   end
-    
+
 end    
