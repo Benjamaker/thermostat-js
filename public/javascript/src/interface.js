@@ -19,15 +19,11 @@ $(document).ready(function() {
 
   function updatePowerSaving() {
     thermostat.getPowerSaving(function(data) {
-      let psmstatus = data.psm
-      if (psmstatus === true) {
-        console.log("hello")
+      if (data.psm === true) {
         $('#power-save-status').text("on");
       } else {
-        console.log("goodbye")
         $('#power-save-status').text("off");
       }  
-      console.log(data)
     })
   }
 
@@ -61,14 +57,13 @@ $(document).ready(function() {
   })
 
   $('#psm-on').click(function() {
-    thermostat.powerSavingOn();
-    updatePowerSaving();
+    let currentTemp = parseInt($('#temperature').text())
+    thermostat.powerSavingOn(currentTemp, updatePowerSaving);
     updateTemp();
   })
 
   $('#psm-off').click(function() {
-    thermostat.powerSavingOff();
-    updatePowerSaving();
+    thermostat.powerSavingOff(updatePowerSaving);
     updateTemp();
   })
 });

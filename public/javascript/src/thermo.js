@@ -35,17 +35,20 @@ Thermostat.prototype.turnDown = function(temperature, callback) {
     this.updateTemperature(value, callback) 
 };
 
-Thermostat.prototype.powerSavingOff = function() {
+Thermostat.prototype.powerSavingOff = function(callback) {
   this.maximumTemp = 32
-  this.updatePSM(false)
+  this.updatePSM(false, callback)
 };
 
-Thermostat.prototype.powerSavingOn = function() {
+Thermostat.prototype.powerSavingOn = function(temperature, callback) {
   this.maximumTemp = 25
-  this.updatePSM(true)
-  if (this.temperature > 25) {
-    this.temperature = this.maximumTemp
+  this.updatePSM(true, callback)
+  console.log(temperature)
+  if (temperature > 25) {
+    temperature = this.maximumTemp
   } 
+  console.log(temperature)
+  this.updateTemperature(temperature)
 };
 
 Thermostat.prototype.reset = function(temperature) {
@@ -68,6 +71,6 @@ Thermostat.prototype.updateTemperature = function(value, callback) {
   $.post('/temperature', { temperature: value }, callback)
 }
 
-Thermostat.prototype.updatePSM = function(value) {
-  $.post('/power-save-status', { psm: value })
+Thermostat.prototype.updatePSM = function(value, callback) {
+  $.post('/power-save-status', { psm: value }, callback)
 }
